@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمات مونتاج الفيديو الاحترافية</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #1a73e8;
+      --primary-dark: #0d47a1;
+      --accent-color: #fbbc05;
+      --dark-bg: #121212;
+      --darker-bg: #0a0a0a;
+      --card-bg: #1e1e1e;
+      --text-color: #e0e0e0;
+      --text-secondary: #b0b0b0;
+      --border-color: #333;
+      --glass-bg: rgba(30, 30, 30, 0.7);
+      --radius: 12px;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lalezar', cursive;
+      text-decoration: none;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+      color: white;
+      padding: 8rem 2rem 10rem;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      opacity: 0.2;
+    }
+
+    .header h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1s ease;
+      position: relative;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+      position: relative;
+      animation: fadeInUp 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+
+    /* العناصر العامة */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    /* بطاقات الخدمات - التصميم الجديد مع الأنيميشن */
+    .services-container {
+      display: flex;
+      flex-wrap: nowrap; /* تغيير إلى nowrap لجعل الكروت جنبًا إلى جنب */
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+      overflow-x: auto; /* إمكانية التمرير الأفقي للجوّال */
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .services-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .services-container::-webkit-scrollbar-track {
+      background: var(--darker-bg);
+      border-radius: 10px;
+    }
+
+    .services-container::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 10px;
+    }
+
+    .service-card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-color);
+      width: 350px;
+      flex: 0 0 auto; /* منع التمدد أو الانكماش */
+      scroll-snap-align: start;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: cardEntrance 0.8s ease-out forwards;
+    }
+
+    .service-card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .service-card:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .service-card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-color);
+    }
+
+    .card-header {
+      padding: 2rem;
+      background: var(--darker-bg);
+      position: relative;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .card-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .card-header::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: white;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
+    }
+
+    .service-card:hover .card-icon {
+      transform: rotate(15deg) scale(1.1);
+      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.4);
+    }
+
+    .service-title {
+      color: var(--text-color);
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .service-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .service-card:hover .service-title::after {
+      width: 100%;
+    }
+
+    .service-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .card-body {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    .service-card ul {
+      list-style: none;
+    }
+
+    .service-card li {
+      padding: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      border-bottom: 1px dashed var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .service-card li:hover::before {
+      width: 100%;
+    }
+
+    .service-card li:last-child {
+      border-bottom: none;
+    }
+
+    .service-card li:hover {
+      color: var(--accent-color);
+      padding-right: 10px;
+    }
+
+    .service-card li i {
+      color: var(--primary-color);
+      font-size: 1rem;
+      min-width: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .service-card li:hover i {
+      color: var(--accent-color);
+      transform: scale(1.2);
+    }
+
+    .card-footer {
+      padding: 1.5rem 2rem;
+      background: var(--darker-bg);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .price::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+
+    .service-card:hover .price::after {
+      width: 100%;
+    }
+
+    .action-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .action-btn:hover::before {
+      left: 100%;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      background: var(--accent-color);
+      color: var(--dark-bg);
+      padding: 0.3rem 2.5rem;
+      font-size: 0.9rem;
+      transform: rotate(45deg);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    /* أنيميشن دخول الكروت */
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* باقي أقسام الصفحة */
+    .video-sample {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 4rem 0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.8s forwards;
+    }
+
+    .video-link {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .video-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      transition: all 0.5s ease;
+    }
+
+    .video-link:hover img {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .play-button {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: rgba(26, 115, 232, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      z-index: 2;
+    }
+
+    .play-button i {
+      color: white;
+      font-size: 30px;
+      margin-right: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .video-link:hover .play-button {
+      background: var(--primary-color);
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(26, 115, 232, 0.6);
+    }
+
+    .video-link:hover .play-button i {
+      transform: scale(1.2);
+    }
+
+    .back-btn {
+      color: var(--accent-color);
+      background-color: rgba(251, 188, 5, 0.1);
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      border: 1px solid rgba(251, 188, 5, 0.3);
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(251, 188, 5, 0.2);
+      transform: translateX(5px);
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(251, 188, 5, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(251, 188, 5, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(251, 188, 5, 0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 6rem 1rem 8rem;
+      }
+
+      .header h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .services-container {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+
+      .service-card {
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-right"></i> العودة للمتجر
+    </a>
+    <div class="container">
+      <h1>احترف مونتاج الفيديو مع أفضل الخدمات</h1>
+      <p>خدمات مونتاج فيديو احترافية للمبدعين والشركات بجودة عالية وسرعة في التنفيذ</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="services">
+      <h2>الخدمات المقدمة</h2>
+      <div class="services-container">
+        <!-- بطاقة الخدمة 1 -->
+        <div class="service-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-film"></i>
+            </div>
+            <h3 class="service-title">المونتاج الأساسي</h3>
+            <p class="service-desc">حلول مونتاج احترافية للمبتدئين والهواة</p>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><i class="fas fa-check"></i> قص ولصق المشاهد باحترافية</li>
+              <li><i class="fas fa-check"></i> الانتقالات البسيطة والأنيقة</li>
+              <li><i class="fas fa-check"></i> ضبط مستوى الصوت وتنقيته</li>
+              <li><i class="fas fa-check"></i> جودة تصوير 720p</li>
+              <li><i class="fas fa-check"></i> إضافة شعار أو نص</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <span class="price">59.99$</span>
+            <a href="pay/vid-pay1.html" class="action-btn">اختيار الباقة</a>
+          </div>
+        </div>
+
+        <!-- بطاقة الخدمة 2 -->
+        <div class="service-card">
+          <div class="popular-tag">الأكثر طلباً</div>
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3 class="service-title">المونتاج المتقدم</h3>
+            <p class="service-desc">حلول متكاملة للمحترفين</p>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><i class="fas fa-check"></i> انتقالات معقدة ومبتكرة</li>
+              <li><i class="fas fa-check"></i> تصحيح الألوان بشكل احترافي</li>
+              <li><i class="fas fa-check"></i> تعديل الصوت وإزالة الضوضاء</li>
+              <li><i class="fas fa-check"></i> إضافة مؤثرات نصية متحركة</li>
+              <li><i class="fas fa-check"></i> جودة تصوير 1080p فائقة الوضوح</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <span class="price">74.99$</span>
+            <a href="pay/vid-pay2.html" class="action-btn">اختيار الباقة</a>
+          </div>
+        </div>
+
+        <!-- بطاقة الخدمة 3 -->
+        <div class="service-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3 class="service-title">المونتاج المميز</h3>
+            <p class="service-desc">حلول سينمائية احترافية بأعلى جودة</p>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><i class="fas fa-check"></i> الرسوم المتحركة والمؤثرات البصرية</li>
+              <li><i class="fas fa-check"></i> المؤثرات السينمائية الاحترافية</li>
+              <li><i class="fas fa-check"></i> تعديلات غير محدودة حتى الإشباع</li>
+              <li><i class="fas fa-check"></i>المساعدة في سناريو الفيديو</li>
+              <li><i class="fas fa-check"></i> جودة 4K بدرجات ألوان سينمائية</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <span class="price">109.99$</span>
+            <button class="action-btn">اختيار الباقة</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-sample">
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="video-link">
+        <img
+          src="https://images.unsplash.com/photo-1559703248-dca5ec95c047?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+          alt="عينة مونتاج فيديو">
+        <div class="play-button">
+          <i class="fas fa-play"></i>
+        </div>
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <h3>تواصل معنا</h3>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>جميع الحقوق محفوظة &copy; 2023 خدمات مونتاج الفيديو الاحترافية</p>
+    </div>
+  </footer>
+
+  <script>
+    // إضافة تأثير اهتزاز بسيط عند التمرير
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.service-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = `cardEntrance 0.8s ease-out forwards`;
+          }
+        });
+      }, {threshold: 0.1});
+
+      cards.forEach(card => {
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+
+</html>

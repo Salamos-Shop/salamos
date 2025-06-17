@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الفنون - Salamos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'El Messiri';
+            src: url('Fonts/El_Messiri/ElMessiri-VariableFont_wght.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #333;
+            --glass-bg: rgba(30, 30, 30, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'El Messiri', sans-serif;
+            text-decoration: none !important;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* شريط التنقل */
+        .header {
+            background-color: var(--darker-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav ul li {
+            margin-left: 25px;
+        }
+
+        .nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 22px;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .nav ul li a:hover,
+        .nav ul li a.active {
+            color: var(--accent-color);
+            background-color: rgba(251, 188, 5, 0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+
+        /* قسم معرض الفنون */
+        .art-gallery-section {
+            padding: 150px 0 80px;
+            background-color: var(--dark-bg);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .gallery-header h1 {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .gallery-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .gallery-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gallery-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            background: var(--card-bg);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-image {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-info {
+            padding: 20px;
+            background: var(--card-bg);
+        }
+
+        .gallery-info h3 {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .gallery-info p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .artist-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .artist-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .artist-info span {
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .price {
+            color: var(--accent-color);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .gallery-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .view-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .buy-btn {
+            background: var(--accent-color);
+            color: var(--dark-bg);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .lightbox-img {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .lightbox-details {
+            padding: 20px;
+            color: var(--text-color);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                order: 3;
+                margin-top: 15px;
+            }
+
+            .nav.active {
+                display: block;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                overflow: hidden;
+                border: 1px solid var(--border-color);
+            }
+
+            .nav ul li {
+                border-bottom: 1px solid var(--border-color);
+                margin-left: 0;
+            }
+
+            .nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            .nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                color: var(--text-color);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-header h1 {
+                font-size: 36px;
+            }
+
+            .gallery-header p {
+                font-size: 18px;
+                padding: 0 20px;
+            }
+
+            .category-btn {
+                padding: 8px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // إدارة القائمة المنسدلة
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            const navLinks = document.querySelectorAll('.nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        mainNav.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // تصفية الأعمال الفنية
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // إزالة النشط من جميع الأزرار
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // إضافة النشط للزر المحدد
+                    button.classList.add('active');
+
+                    const category = button.getAttribute('data-category');
+
+                    galleryItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxArtist = document.getElementById('lightbox-artist');
+            const lightboxPrice = document.getElementById('lightbox-price');
+            const closeBtn = document.getElementById('close-btn');
+            const viewButtons = document.querySelectorAll('.view-btn');
+
+            viewButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const imgSrc = button.getAttribute('data-img');
+                    const title = button.getAttribute('data-title');
+                    const artist = button.getAttribute('data-artist');
+                    const price = button.getAttribute('data-price');
+
+                    lightboxImg.src = imgSrc;
+                    lightboxTitle.textContent = title;
+                    lightboxArtist.textContent = `الفنان: ${artist}`;
+                    lightboxPrice.textContent = `السعر: ${price}`;
+
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر" class="logo-img">
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav class="nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">الصفحة الرئيسية</a></li>
+                    <li><a href="index.html#products">المنتجات</a></li>
+                    <li><a href="index.html#services">الخدمات</a></li>
+                    <li><a href="index.html#about">قصتنا</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم معرض الفنون -->
+    <section class="art-gallery-section">
+        <div class="container">
+            <div class="gallery-header">
+                <h1>معرض الفنون</h1>
+                <p>اكتشف مجموعة مميزة من الأعمال الفنية الرقمية والرسومات الإبداعية التي تجمع بين الأصالة والحداثة</p>
+            </div>
+
+            <div class="gallery-categories">
+                <button class="category-btn active" data-category="all">الكل</button>
+                <button class="category-btn" data-category="anime">رسومات أنمي</button>
+                <button class="category-btn" data-category="digital">فن رقمي</button>
+                <button class="category-btn" data-category="congrats">تهانئ</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- رسمة أنمي -->
+                <div class="gallery-item" data-category="anime">
+                    <div class="gallery-image">
+                        <img src="ART/black.jpg" alt="رسمة أنمي">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>رسمة أنمي</h3>
+                        <p>رسمة أنمي احترافية بتقنية عالية</p>
+                        <div class="gallery-meta">
+                            <div class="artist-info">
+                                <img src="images/artist.jpg" alt="الفنان">
+                                <span>عمر محمود</span>
+                            </div>
+                            <div class="price">5 د.ا</div>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="action-btn view-btn" data-img="ART/black.jpg" data-title="رسمة أنمي" data-artist="عمر محمود" data-price="5 د.ا">
+                                <i class="fas fa-expand"></i>
+                                عرض
+                            </button>
+                            <a href="contact.html" class="action-btn buy-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                شراء
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تهنئة بالعيد -->
+                <div class="gallery-item" data-category="congrats">
+                    <div class="gallery-image">
+                        <img src="ART/eid.jpg" alt="تهنئة بالعيد">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>تهنئة بالعيد</h3>
+                        <p>تصميم احترافي لتهنئة العيد</p>
+                        <div class="gallery-meta">
+                            <div class="artist-info">
+                                <img src="images/artist.jpg" alt="الفنان">
+                                <span>عمر محمود</span>
+                            </div>
+                            <div class="price">5 د.ا</div>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="action-btn view-btn" data-img="ART/eid.jpg" data-title="تهنئة بالعيد" data-artist="عمر محمود" data-price="5 د.ا">
+                                <i class="fas fa-expand"></i>
+                                عرض
+                            </button>
+                            <a href="contact.html" class="action-btn buy-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                شراء
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رسمة أنمي أخرى -->
+                <div class="gallery-item" data-category="anime">
+                    <div class="gallery-image">
+                        <img src="ART/gohan.jpg" alt="رسمة أنمي">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>رسمة أنمي</h3>
+                        <p>رسمة أنمي احترافية بتقنية عالية</p>
+                        <div class="gallery-meta">
+                            <div class="artist-info">
+                                <img src="images/artist.jpg" alt="الفنان">
+                                <span>عمر محمود</span>
+                            </div>
+                            <div class="price">5 د.ا</div>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="action-btn view-btn" data-img="ART/gohan.jpg" data-title="رسمة أنمي" data-artist="عمر محمود" data-price="5 د.ا">
+                                <i class="fas fa-expand"></i>
+                                عرض
+                            </button>
+                            <a href="contact.html" class="action-btn buy-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                شراء
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رسمة أنمي ثالثة -->
+                <div class="gallery-item" data-category="anime">
+                    <div class="gallery-image">
+                        <img src="ART/nezoko.jpg" alt="رسمة أنمي">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>رسمة أنمي</h3>
+                        <p>رسمة أنمي احترافية بتقنية عالية</p>
+                        <div class="gallery-meta">
+                            <div class="artist-info">
+                                <img src="images/artist.jpg" alt="الفنان">
+                                <span>عمر محمود</span>
+                            </div>
+                            <div class="price">5 د.ا</div>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="action-btn view-btn" data-img="ART/nezoko.jpg" data-title="رسمة أنمي" data-artist="عمر محمود" data-price="5 د.ا">
+                                <i class="fas fa-expand"></i>
+                                عرض
+                            </button>
+                            <a href="contact.html" class="action-btn buy-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                شراء
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رسمة أنمي رابعة -->
+                <div class="gallery-item" data-category="anime">
+                    <div class="gallery-image">
+                        <img src="ART/tanjiro.jpg" alt="رسمة أنمي">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>رسمة أنمي</h3>
+                        <p>رسمة أنمي احترافية بتقنية عالية</p>
+                        <div class="gallery-meta">
+                            <div class="artist-info">
+                                <img src="images/artist.jpg" alt="الفنان">
+                                <span>عمر محمود</span>
+                            </div>
+                            <div class="price">5 د.ا</div>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="action-btn view-btn" data-img="ART/tanjiro.jpg" data-title="رسمة أنمي" data-artist="عمر محمود" data-price="5 د.ا">
+                                <i class="fas fa-expand"></i>
+                                عرض
+                            </button>
+                            <a href="contact.html" class="action-btn buy-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                شراء
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="close-btn" id="close-btn">&times;</span>
+            <img src="" alt="" class="lightbox-img" id="lightbox-img">
+            <div class="lightbox-details">
+                <h2 id="lightbox-title"></h2>
+                <p id="lightbox-artist"></p>
+                <p id="lightbox-price"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
