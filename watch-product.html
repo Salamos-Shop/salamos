@@ -385,6 +385,21 @@
                 transform: translateX(0);
             }
         }
+
+        .image-counter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+
     </style>
 </head>
 <body>
@@ -401,7 +416,7 @@
                 </div>
                 <div class="promo-text">
                     <h3>عرض افتتاحي!</h3>
-                    <p>احصل على خصم 50% عند الشراء اليوم</p>
+                    <p>احصل على خصم 50% على ساعة ذكية</p>
                 </div>
                 <div class="promo-badge">
                     <span>خصم 50%</span>
@@ -415,6 +430,7 @@
                     <button class="gallery-arrow left-arrow" onclick="prevImage()" style="position:absolute;top:50%;right:10px;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,0.4);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer;"><i class="fas fa-chevron-right"></i></button>
                     <img src="images/salamos-shop-images/ساعة.avif" alt="ساعة ذكية T800 Ultra 2" class="main-image" id="mainImage">
                     <button class="gallery-arrow right-arrow" onclick="nextImage()" style="position:absolute;top:50%;left:10px;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,0.4);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer;"><i class="fas fa-chevron-left"></i></button>
+                    <div class="image-counter" id="imageCounter">1/6</div>
                 </div>
             </div>
 
@@ -447,46 +463,62 @@
     </div>
 
     <button class="theme-toggle" id="themeToggle" title="تبديل الثيم" style="position: fixed; bottom: 20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary-color); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;"><i class="fas fa-moon"></i></button>
-    <script>
-    // زر تبديل الثيم
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
-    function updateThemeIcon(theme) {
-        themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-    }
-    </script>
+
 
     <script>
+        // زر تبديل الثيم
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+        
+        // معرض الصور
         const watchImages = [
             'images/salamos-shop-images/ساعة.avif',
             'images/salamos-shop-images/ساعة 2.avif',
             'images/salamos-shop-images/ساعة 3.avif',
             'images/salamos-shop-images/ساعة 4.avif'
         ];
-        let currentIndex = 0;
-        function showImage(idx) {
-            currentIndex = idx;
+        
+        let currentWatchIndex = 0;
+        
+        function updateCounter() {
+            document.getElementById('imageCounter').textContent = `${currentWatchIndex + 1}/${watchImages.length}`;
+        }
+        
+        function showWatchImage(idx) {
+            currentWatchIndex = idx;
             document.getElementById('mainImage').src = watchImages[idx];
+            updateCounter();
         }
+        
         function nextImage() {
-            currentIndex = (currentIndex + 1) % watchImages.length;
-            showImage(currentIndex);
+            currentWatchIndex = (currentWatchIndex + 1) % watchImages.length;
+            showWatchImage(currentWatchIndex);
         }
+        
         function prevImage() {
-            currentIndex = (currentIndex - 1 + watchImages.length) % watchImages.length;
-            showImage(currentIndex);
+            currentWatchIndex = (currentWatchIndex - 1 + watchImages.length) % watchImages.length;
+            showWatchImage(currentWatchIndex);
         }
-        showImage(0);
+        
+        // تهيئة الصفحة عند التحميل
+        window.addEventListener('DOMContentLoaded', function() {
+            showWatchImage(0);
+        });
     </script>
+
+
 </body>
 </html> 

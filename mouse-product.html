@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/home-button.css">
     <style>
         :root {
             --primary-color: #1a73e8;
@@ -179,6 +178,13 @@
             overflow: hidden;
         }
 
+        /* أنماط معرض الصور المعدلة */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
         .main-image-container {
             position: relative;
             width: 100%;
@@ -198,34 +204,50 @@
             background: var(--card-bg);
         }
 
-        .main-image:hover {
-            transform: scale(1.05);
-        }
-
-        .thumbnails {
+        .gallery-nav {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            z-index: 10;
         }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
+        
+        .nav-arrow {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            padding: 5px;
-            background: var(--card-bg);
+            font-size: 20px;
         }
-
-        .thumbnail:hover, .thumbnail.active {
-            border-color: var(--primary-color);
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        
+        .nav-arrow:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .image-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 10;
         }
 
         .product-info {
@@ -416,6 +438,32 @@
             transform: scale(1.1);
         }
 
+        .category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: var(--tag-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-tag.gaming {
+            background-color: #ff4757;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .category-tag.gaming:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+        }
+
         @media (max-width: 992px) {
             .product-container {
                 grid-template-columns: 1fr;
@@ -443,49 +491,36 @@
                 font-size: 18px;
             }
 
-            .countdown {
-                flex-wrap: wrap;
-                gap: 10px;
+            .main-image-container {
+                height: 300px;
             }
-
-            .countdown-item {
-                min-width: 70px;
-                padding: 12px;
+            
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
             }
-
-            .countdown-item span {
-                font-size: 24px;
-            }
-
-            .countdown-item small {
-                font-size: 12px;
+            
+            .image-counter {
+                top: 10px;
+                left: 10px;
+                font-size: 14px;
+                padding: 3px 10px;
             }
         }
 
-        .category-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--accent-color);
-            color: var(--dark-bg);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 16px;
-            font-weight: 600;
-            z-index: 2;
-            box-shadow: var(--tag-shadow);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.5s ease; /* هذه السطر مسؤول عن تأثير الحركة */
+    transform-origin: center;
+    padding: 20px;
+    background: var(--card-bg);
+}
 
-        .category-tag.gaming {
-            background-color: #ff4757;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
-        }
-
-        .category-tag.gaming:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+.main-image:hover {
+    transform: scale(1.05); /* هذا السطر مسؤول عن التكبير */
         }
     </style>
 </head>
@@ -513,10 +548,24 @@
 
         <div class="product-container">
             <div class="product-gallery">
-                <div class="main-image-container" style="position:relative;">
-                    <img src="images/salamos-shop-images/ماوس.avif" alt="ماوس جيمينج">
-
-
+                <div class="gallery-container">
+                <div class="main-image-container">
+                        <img id="mainImage" src="images/salamos-shop-images/ماوس.avif" alt="ماوس جيمينج" class="main-image">
+                        <img id="mainImage" src="images/salamos-shop-images/ماوس 2.avif" alt="ماوس جيمينج" class="main-image">  
+                        <img id="mainImage" src="images/salamos-shop-images/ماوس 3.avif" alt="ماوس جيمينج" class="main-image">                        
+                        <img id="mainImage" src="images/salamos-shop-images/ماوس 4.avif" alt="ماوس جيمينج" class="main-image">
+                        <img id="mainImage" src="images/salamos-shop-images/ماوس new.png" alt="ماوس جيمينج" class="main-image">
+                        <img id="mainImage" src="images/salamos-shop-images/ماوس new6.png" alt="ماوس جيمينج" class="main-image">
+                        <div class="image-counter" id="imageCounter">1/6</div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="nav-arrow" onclick="prevImage()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="nav-arrow" onclick="nextImage()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                </div>
                 </div>
                 <span class="category-tag gaming">جيمنج</span>
             </div>
@@ -524,22 +573,22 @@
             <div class="product-info">
                 <h1 class="product-title">ماوس جيمنج لاسلكي</h1>
                 <div class="product-price">
-                    <span class="original-price">$32.40</span>
+                    <span class="original-price">$25</span>
                     <span class="discount-badge">-50%</span>
-                    <span class="final-price">$16.20</span>
+                    <span class="final-price">$12.50</span>
                 </div>
                 <p class="product-description">
                     استمتع بتجربة استخدام سلسة ومريحة مع ماوس بصري لاسلكي قابل لإعادة الشحن، يدعم الاتصال المزدوج عبر بلوتوث وUSB 2.4GHz لتوافق مثالي مع أجهزة الكمبيوتر المحمول، الـ MacBook، والتابلت.
                 </p>
                 <ul class="features-list">
-                    <li><i class="fas fa-check-circle"></i> صامت بالكامل – مثالي للعمل والمذاكرة بدون إزعاج</li>
-                    <li><i class="fas fa-check-circle"></i> تصميم مريح وخفيف – استخدام طويل بدون تعب</li>
-                    <li><i class="fas fa-check-circle"></i> إضاءة خلفية RGB – لمسة جمالية أنيقة ومميزة</li>
-                    <li><i class="fas fa-check-circle"></i> بطارية مدمجة – شحن سهل واستخدام يدوم</li>
-                    <li><i class="fas fa-check-circle"></i> توصيل سريع ومستقر – بدون تأخير أو تقطيع</li>
+                    <li><i class="fas fa-check-circle"></i> صامت بالكامل - مثالي للعمل والمذاكرة بدون إزعاج</li>
+                    <li><i class="fas fa-check-circle"></i> تصميم مريح وخفيف - استخدام طويل بدون تعب</li>
+                    <li><i class="fas fa-check-circle"></i> إضاءة خلفية RGB - لمسة جمالية أنيقة ومميزة</li>
+                    <li><i class="fas fa-check-circle"></i> بطارية مدمجة - شحن سهل واستخدام يدوم</li>
+                    <li><i class="fas fa-check-circle"></i> توصيل سريع ومستقر - بدون تأخير أو تقطيع</li>
                 </ul>
                 <p class="product-description" style="margin-top: 20px; font-style: italic; color: var(--accent-color);">
-                    ماوس واحد يجمع بين الراحة، الجمال، والعملية – مناسب لكل الاستخدامات اليومية.
+                    ماوس واحد يجمع بين الراحة، الجمال، والعملية - مناسب لكل الاستخدامات اليومية.
                 </p>
                 <button class="buy-button">
                     <i class="fas fa-shopping-cart"></i>
@@ -554,27 +603,73 @@
     </button>
 
     <script>
+        // معرض الصور
         const mouseImages = [
             'images/salamos-shop-images/ماوس.avif',
-            'images/salamos-shop-images/ماوس2.avif',
-            'images/salamos-shop-images/ماوس3.avif'
+            'images/salamos-shop-images/ماوس 2.avif',
+            'images/salamos-shop-images/ماوس 3.avif',
+            'images/salamos-shop-images/ماوس 4.avif',
+            'images/salamos-shop-images/ماوس new.png',
+            'images/salamos-shop-images/ماوس new6.png'
         ];
+        
         let currentIndex = 0;
+        
+        function updateCounter() {
+            document.getElementById('imageCounter').textContent = `${currentIndex + 1}/${mouseImages.length}`;
+        }
+        
         function showImage(idx) {
             currentIndex = idx;
             document.getElementById('mainImage').src = mouseImages[idx];
+            updateCounter();
         }
+        
         function nextImage() {
             currentIndex = (currentIndex + 1) % mouseImages.length;
             showImage(currentIndex);
         }
+        
         function prevImage() {
             currentIndex = (currentIndex - 1 + mouseImages.length) % mouseImages.length;
             showImage(currentIndex);
         }
-        showImage(0);
-
-        // Theme Toggle
+        
+        // تهيئة الصفحة عند التحميل
+        window.onload = function() {
+            showImage(0);
+            
+            // إضافة تأثير التمرير بالسحب (اختياري)
+            const mainImageContainer = document.querySelector('.main-image-container');
+            let startX = 0;
+            let isDragging = false;
+            
+            mainImageContainer.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                isDragging = true;
+            });
+            
+            mainImageContainer.addEventListener('mousemove', (e) => {
+                if(!isDragging) return;
+                const moveX = e.clientX - startX;
+                if(moveX > 50) {
+                    prevImage();
+                    isDragging = false;
+                } else if(moveX < -50) {
+                    nextImage();
+                    isDragging = false;
+                }
+            });
+            
+            mainImageContainer.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+            mainImageContainer.addEventListener('mouseleave', () => {
+                isDragging = false;
+            });
+            
+            // تبديل الثيم
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         
@@ -594,6 +689,7 @@
         function updateThemeIcon(theme) {
             themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
         }
+        };
     </script>
 </body>
 </html> 
