@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="متجر Salamos - خدمات تصميم المواقع، مونتاج الفيديو، والأعمال الفنية الرقمية">
+    <meta name="keywords" content="تصميم مواقع، مونتاج فيديو، رسومات، أنمي، فن رقمي, منتجات">
+    <meta name="author" content="Salamos Team">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Salamos - خدمات إبداعية متكاملة">
+    <meta property="og:description" content="اكتشف خدماتنا المميزة في تصميم المواقع، مونتاج الفيديو، والأعمال الفنية الرقمية">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:url" content="https://salamos.com">
+    <title>الرئيسيه- Salamos</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @font-face {
+            font-family: 'El Messiri';
+            src: url('Fonts/El_Messiri/ElMessiri-VariableFont_wght.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #333;
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --transition-speed: 0.3s;
+            --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* متغيرات الثيم الفاتح */
+        [data-theme="light"] {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-bg: #f8f9fa;
+            --darker-bg: #e9ecef;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            --image-bg: #f8f9fa;
+            --image-hover-bg: #e9ecef;
+            --text-shadow: none;
+            --image-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+            --image-hover-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            --tag-shadow: 0 1px 4px rgba(251, 188, 5, 0.1);
+            --tag-hover-shadow: 0 2px 6px rgba(251, 188, 5, 0.15);
+            --info-gradient: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0.95) 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #333;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            --card-hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            --image-bg: #1a1a1a;
+            --image-hover-bg: #2a2a2a;
+            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --image-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --image-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            --tag-shadow: 0 4px 12px rgba(251, 188, 5, 0.2);
+            --tag-hover-shadow: 0 6px 15px rgba(251, 188, 5, 0.3);
+            --info-gradient: linear-gradient(to top, #1e1e1e 0%, rgba(30, 30, 30, 0.95) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+            text-decoration: none !important;
+            transition: all var(--transition-speed) var(--transition-timing);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s var(--transition-timing),
+                        color 0.3s var(--transition-timing);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* شريط التنقل */
+        .header {
+            background-color: var(--darker-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.4s var(--transition-timing),
+                        background-color var(--transition-speed) var(--transition-timing),
+                        box-shadow var(--transition-speed) var(--transition-timing);
+        }
+
+        .header.scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s var(--transition-timing);
+        }
+
+        [data-theme="light"] .logo img {
+            filter: brightness(0) invert(0);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav ul li {
+            margin-left: 25px;
+        }
+
+        .nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 22px;
+            position: relative;
+            transition: color 0.3s var(--transition-timing);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s var(--transition-timing);
+        }
+
+        .nav ul li a:hover::after,
+        .nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+
+        /* القسم الرئيسي */
+        .hero-section {
+            position: relative;
+            padding: 150px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            transform: scale(1.1);
+            transition: transform 0.8s var(--transition-timing);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out 0.3s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.4s var(--transition-timing);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 120px 0 60px;
+                min-height: 80vh;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* قسم المنتجات */
+        .products-section {
+            padding: 80px 0;
+            background-color: var(--darker-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: var(--accent-color);
+            position: relative;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            transition: transform 0.4s var(--transition-timing),
+                        color 0.4s var(--transition-timing);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 15px auto;
+        }
+
+        .section-title:hover {
+            transform: translateY(-2px);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            opacity: 0;
+            animation: gridAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes gridAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: none;
+            border: 1px solid var(--border-color);
+            position: relative;
+            height: 500px;
+        }
+
+        .product-card:hover {
+            transform: none;
+            box-shadow: var(--card-shadow);
+        }
+
+        .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            transition: none;
+            background: linear-gradient(to bottom, var(--image-bg), var(--image-hover-bg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px;
+            filter: drop-shadow(var(--image-shadow));
+            transform-origin: center;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .product-card:hover .product-image {
+            height: 320px;
+            background: linear-gradient(to bottom, var(--image-hover-bg), var(--image-bg));
+        }
+
+        .product-desc {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            height: auto;
+            max-height: 100px;
+            overflow: hidden;
+            transform: translateY(0);
+            line-height: 1.6;
+            padding: 5px 0;
+        }
+
+        .product-card:hover .product-desc {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: var(--info-gradient);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-info h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            text-shadow: var(--text-shadow);
+            transform: none;
+        }
+
+        .product-card:hover .product-info h3 {
+            margin-bottom: 12px;
+            transform: none;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: none;
+        }
+
+        .product-card:hover .product-footer {
+            margin-top: 0;
+            transform: none;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-shadow: var(--text-shadow);
+        }
+
+        .add-to-cart {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.2);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: var(--tag-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .category-tag {
+            transform: translateY(-3px);
+            box-shadow: var(--tag-hover-shadow);
+        }
+
+        /* قسم الخدمات - تحسينات خاصة */
+        .services-section {
+            padding: 80px 0;
+            background-color: var(--dark-bg);
+        }
+
+        .services-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            opacity: 0;
+            animation: servicesGridAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes servicesGridAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: serviceCardAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes serviceCardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+
+        .service-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover h3 {
+            transform: translateY(-2px);
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 20px;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover p {
+            color: var(--text-color);
+        }
+
+        /* زر المزيد المميز */
+        .service-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none !important;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 120px;
+            margin: 0 auto;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .service-btn:hover {
+            background-color: transparent;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .service-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        .service-btn i {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* قسم عن المتجر - تأثير الزجاج */
+        .about-section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .about-text p {
+            font-size: 22px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* تذييل الصفحة */
+        .footer {
+            background-color: var(--darker-bg);
+            padding: 60px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: transform 0.3s var(--transition-timing),
+                        color 0.3s var(--transition-timing);
+            font-size: 20px;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .footer-section p i {
+            margin-left: 10px;
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            color: var(--text-color);
+            transition: transform 0.4s var(--transition-timing),
+                        background-color 0.4s var(--transition-timing);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                order: 3;
+                margin-top: 15px;
+                transition: transform 0.4s var(--transition-timing),
+                            opacity 0.4s var(--transition-timing);
+            }
+
+            .nav.active {
+                display: block;
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                overflow: hidden;
+                border: 1px solid var(--border-color);
+            }
+
+            .nav ul li {
+                border-bottom: 1px solid var(--border-color);
+                margin-left: 0;
+            }
+
+            .nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            .nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                color: var(--text-color);
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .cta-btn {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .about-content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 120px 0 60px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .about-content {
+                padding: 20px;
+            }
+        }
+
+        /* إضافة أنماط جديدة */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s var(--transition-timing),
+                        visibility 0.5s var(--transition-timing);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transition: transform 0.8s var(--transition-timing);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* تحسين التحميل البطيء للصور */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        /* تحسين التجاوب مع الشاشات الكبيرة */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+
+        /* تحسين الأداء على الأجهزة المحمولة */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* تحسينات التمرير */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* تحسينات الصور */
+        img {
+            transition: opacity 0.4s var(--transition-timing),
+                        transform 0.4s var(--transition-timing);
+        }
+
+        img.lazy-load {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        img.lazy-load.loaded {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* تحسينات النصوص */
+        .section-title:hover, .hero-content h1:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-section a:hover {
+            transform: translateX(-5px);
+        }
+
+        /* تنسيقات الدليل */
+        .shepherd-text {
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif !important;
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #ffffff !important;
+        }
+
+        .shepherd-header {
+            background-color: var(--primary-color) !important;
+        }
+
+        .shepherd-title {
+            font-family: 'Cairo', sans-serif !important;
+            font-weight: 600 !important;
+            color: #ffffff !important;
+        }
+
+        .shepherd-button {
+            background-color: var(--primary-color) !important;
+            border: none !important;
+            border-radius: 4px !important;
+            color: #ffffff !important;
+            cursor: pointer !important;
+            margin-right: 0.5rem !important;
+            padding: 0.5rem 1.5rem !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+        }
+
+        .shepherd-button:hover {
+            background-color: var(--primary-dark) !important;
+            color: #ffffff !important;
+        }
+
+        .shepherd-button:not(:disabled) {
+            cursor: pointer !important;
+        }
+
+        .shepherd-cancel-icon {
+            color: #ffffff !important;
+        }
+
+        .shepherd-content {
+            border-radius: 8px !important;
+            background-color: var(--card-bg) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .shepherd-arrow {
+            border-color: var(--card-bg) !important;
+        }
+
+        .shepherd-arrow::before {
+            border-color: var(--card-bg) !important;
+        }
+
+        .tour-highlight {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .tour-highlight::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(26, 115, 232, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(26, 115, 232, 0);
+            }
+        }
+
+        /* تنسيقات مربع حوار الدليل */
+        .tour-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .tour-dialog-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tour-dialog h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .tour-dialog-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .tour-dialog-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .tour-dialog-btn.yes {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .tour-dialog-btn.no {
+            background: var(--border-color);
+            color: #ffffff;
+        }
+
+        .tour-dialog-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* إضافة أنماط جديدة لقسم المنتجات */
+        .view-all-products {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.4s var(--transition-timing);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .view-all-btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card .category-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* تنسيق زر تبديل الثيم */
+        .theme-toggle {
+            position: fixed;
+            bottom: 70px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .theme-toggle i {
+            transition: transform 0.5s var(--transition-timing);
+        }
+
+        .theme-toggle:hover i {
+            transform: rotate(180deg);
+        }
+
+        /* تعديل موضع زر إعادة تشغيل الدليل */
+        .restart-tour-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .restart-tour-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* تأثير الانتقال السلس للثيم */
+        .product-card,
+        .service-card,
+        .header,
+        .footer,
+        .about-content {
+            transition: background-color 0.3s var(--transition-timing),
+                        border-color 0.3s var(--transition-timing),
+                        box-shadow 0.3s var(--transition-timing);
+        }
+
+        .image-gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .image-gallery img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .image-gallery img.active {
+            opacity: 1;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-nav.prev {
+            right: 10px;
+        }
+
+        .gallery-nav.next {
+            left: 10px;
+        }
+
+        .gallery-nav i {
+            font-size: 18px;
+        }
+
+        /* تنسيق خاص للكروت في الصفحة الرئيسية */
+        #products .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #products .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        #products .product-card .product-desc {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            height: auto;
+            max-height: 100px;
+            overflow: hidden;
+            transform: translateY(0);
+            line-height: 1.6;
+            padding: 5px 0;
+        }
+
+        #products .product-card:hover .product-desc {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+        }
+
+        #products .product-card .product-image {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #products .product-card:hover .product-image {
+            height: 350px;
+            background: linear-gradient(to bottom, var(--image-hover-bg), var(--image-bg));
+        }
+
+        #products .product-card .product-image img {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #products .product-card:hover .product-image img {
+            transform: scale(1.1);
+            filter: drop-shadow(var(--image-hover-shadow));
+        }
+
+        #products .product-card:nth-child(2) .product-info {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #products .product-card:nth-child(2):hover .product-info {
+            background: var(--info-gradient);
+            transform: translateY(-5px);
+        }
+
+        #products .product-card:nth-child(2) .product-info h3 {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #products .product-card:nth-child(2):hover .product-info h3 {
+            margin-bottom: 5px;
+            transform: translateY(-2px);
+        }
+
+        #products .product-card:nth-child(2) .product-footer {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #products .product-card:nth-child(2):hover .product-footer {
+            margin-top: 10px;
+            transform: translateY(2px);
+        }
+
+        /* تنسيق خاص للكروت في صفحة المنتجات */
+        .products-page .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .products-page .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .products-page .product-desc {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            height: auto;
+            max-height: 100px;
+            overflow: hidden;
+            transform: translateY(0);
+            line-height: 1.6;
+            padding: 5px 0;
+        }
+
+        .products-page .product-card:hover .product-desc {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+        }
+
+        .products-page .product-image {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .products-page .product-card:hover .product-image {
+            height: 350px;
+            background: linear-gradient(to bottom, var(--image-hover-bg), var(--image-bg));
+        }
+
+        .products-page .product-image img {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .products-page .product-card:hover .product-image img {
+            transform: scale(1.1);
+            filter: drop-shadow(var(--image-hover-shadow));
+        }
+
+        .products-page .product-info {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .products-page .product-card:hover .product-info {
+            background: var(--info-gradient);
+            transform: translateY(-5px);
+        }
+
+        .products-page .product-info h3 {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .products-page .product-card:hover .product-info h3 {
+            margin-bottom: 5px;
+            transform: translateY(-2px);
+        }
+
+        .products-page .product-footer {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .products-page .product-card:hover .product-footer {
+            margin-top: 10px;
+            transform: translateY(2px);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // إدارة القائمة لمنسدلة
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            const navLinks = document.querySelectorAll('.nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        mainNav.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+            
+            // تمييز القسم النشط
+            window.addEventListener('scroll', function() {
+                const currentPosition = window.scrollY + 100;
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const section = document.querySelector(link.getAttribute('href'));
+                    
+                    if (section && section.offsetTop <= currentPosition &&
+                        section.offsetTop + section.offsetHeight > currentPosition) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // التمرير السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // إخفاء شاشة التحميل
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            window.addEventListener('load', () => {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            });
+
+            // زر العودة للأعلى
+            const scrollToTop = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTop.classList.add('visible');
+                } else {
+                    scrollToTop.classList.remove('visible');
+                }
+            });
+
+            scrollToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // تحميل الصور بشكل تدريجي
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+
+            // تحسين أداء القائمة المتنقلة
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // إعداد الدليل
+            const tour = new Shepherd.Tour({
+                useModalOverlay: true,
+                defaultStepOptions: {
+                    classes: 'shepherd-theme-custom',
+                    scrollTo: true,
+                    cancelIcon: {
+                        enabled: true
+                    }
+                }
+            });
+
+            // إضافة خطوات الدليل
+            tour.addStep({
+                id: 'welcome',
+                text: 'مرحباً بك في موقعنا! دعني أريك أهم أقسام الموقع',
+                attachTo: {
+                    element: '.hero-content',
+                    on: 'bottom'
+                },
+                buttons: [
+                    {
+                        text: 'تخطي',
+                        action: tour.complete
+                    },
+                    {
+                        text: 'التالي',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'products',
+                text: 'هنا يمكنك تصفح منتجاتنا المميزة',
+                attachTo: {
+                    element: '#products',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        text: 'السابق',
+                        action: tour.back
+                    },
+                    {
+                        text: 'التالي',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'services',
+                text: 'اكتشف خدماتنا المتنوعة في تصميم المواقع ومونتاج الفيديو',
+                attachTo: {
+                    element: '#services',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        text: 'السابق',
+                        action: tour.back
+                    },
+                    {
+                        text: 'التالي',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'about',
+                text: 'تعرف على قصتنا وكيف بدأنا',
+                attachTo: {
+                    element: '#about',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        text: 'السابق',
+                        action: tour.back
+                    },
+                    {
+                        text: 'إنهاء',
+                        action: function() {
+                            // إظهار مربع حوار للخيارات
+                            const dialog = document.createElement('div');
+                            dialog.className = 'tour-dialog';
+                            dialog.innerHTML = `
+                                <div class="tour-dialog-content">
+                                    <h3>هل تريد إظهار الدليل في المرة القادمة؟</h3>
+                                    <div class="tour-dialog-buttons">
+                                        <button class="tour-dialog-btn yes">نعم</button>
+                                        <button class="tour-dialog-btn no">لا</button>
+                                    </div>
+                                </div>
+                            `;
+                            document.body.appendChild(dialog);
+
+                            // إضافة معالجات الأحداث
+                            dialog.querySelector('.yes').addEventListener('click', () => {
+                                dialog.remove();
+                                tour.complete();
+                            });
+
+                            dialog.querySelector('.no').addEventListener('click', () => {
+                                localStorage.setItem('tourCompleted', 'true');
+                                dialog.remove();
+                                tour.complete();
+                            });
+                        }
+                    }
+                ]
+            });
+
+            // بدء الدليل إذا لم يكن المستخدم قد اختار عدم الظهور
+            if (!localStorage.getItem('tourCompleted')) {
+                setTimeout(() => {
+                    tour.start();
+                }, 1000);
+            }
+
+            // إضافة زر لإعادة تشغيل الدليل
+            const restartTourBtn = document.createElement('button');
+            restartTourBtn.innerHTML = '<i class="fas fa-question-circle"></i>';
+            restartTourBtn.className = 'restart-tour-btn';
+            restartTourBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                transition: all 0.3s ease;
+                z-index: 1000;
+            `;
+            restartTourBtn.addEventListener('mouseover', () => {
+                restartTourBtn.style.transform = 'scale(1.1)';
+            });
+            restartTourBtn.addEventListener('mouseout', () => {
+                restartTourBtn.style.transform = 'scale(1)';
+            });
+            restartTourBtn.addEventListener('click', () => {
+                localStorage.removeItem('tourCompleted');
+                tour.start();
+            });
+            document.body.appendChild(restartTourBtn);
+
+            // إضافة كود تبديل الثيم
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // التحقق من الثيم المحفوظ
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+
+            // معرض الصور
+            const galleries = document.querySelectorAll('.image-gallery');
+            
+            galleries.forEach(gallery => {
+                const images = gallery.querySelectorAll('img');
+                const prevBtn = gallery.querySelector('.prev');
+                const nextBtn = gallery.querySelector('.next');
+                let currentIndex = 0;
+
+                function showImage(index) {
+                    images.forEach(img => img.classList.remove('active'));
+                    images[index].classList.add('active');
+                }
+
+                function nextImage() {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    showImage(currentIndex);
+                }
+
+                function prevImage() {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    showImage(currentIndex);
+                }
+
+                // التبديل التلقائي للصور
+                let interval = setInterval(nextImage, 3000);
+
+                // إيقاف التبديل التلقائي عند تحريك الماوس فوق المعرض
+                gallery.addEventListener('mouseenter', () => {
+                    clearInterval(interval);
+                });
+
+                // إعادة التبديل التلقائي عند إزالة الماوس
+                gallery.addEventListener('mouseleave', () => {
+                    interval = setInterval(nextImage, 3000);
+                });
+
+                // أزرار التنقل
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    prevImage();
+                });
+
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    nextImage();
+                });
+
+                // عرض الصورة الأولى
+                showImage(0);
+            });
+        });
+    </script>
+
+<script>
+  // تحقق إذا كان المستخدم مسجل من قبل
+  function hideRegisterIfUserExists() {
+    var modal = document.getElementById('registerModal');
+    if (!modal) {
+      console.log('لم يتم العثور على عنصر نافذة التسجيل registerModal');
+      return;
+    }
+    if (localStorage.getItem('userName') && localStorage.getItem('userEmail')) {
+      modal.style.display = 'none';
+      console.log('المستخدم مسجل مسبقًا، إخفاء نافذة التسجيل');
+    } else {
+      modal.style.display = 'flex';
+      console.log('المستخدم غير مسجل، عرض نافذة التسجيل');
+    }
+  }
+  hideRegisterIfUserExists();
+
+  var form = document.getElementById('registerForm');
+  if (form) {
+    form.onsubmit = async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const phone = document.getElementById('userPhone').value.trim();
+      const errorDiv = document.getElementById('registerError');
+      errorDiv.style.display = 'none';
+
+      if (!name || !email) {
+        errorDiv.textContent = 'يرجى إدخال الاسم والإيميل';
+        errorDiv.style.display = 'block';
+        console.log('الاسم أو الإيميل غير مدخل');
+        return;
+      }
+
+      try {
+        const res = await fetch('http://127.0.0.1:5000/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone })
+        });
+        const data = await res.json();
+        console.log('رد السيرفر:', data);
+        if (res.ok) {
+          localStorage.setItem('userName', name);
+          localStorage.setItem('userEmail', email);
+          if (phone) localStorage.setItem('userPhone', phone);
+          modal.style.display = 'none';
+          console.log('تم التسجيل بنجاح، تم إخفاء نافذة التسجيل');
+        } else {
+          errorDiv.textContent = data.message || 'حدث خطأ أثناء التسجيل';
+          errorDiv.style.display = 'block';
+          console.log('فشل التسجيل:', data.message);
+        }
+      } catch (err) {
+        errorDiv.textContent = 'تعذر الاتصال بالخادم. تأكد أن السيرفر يعمل.';
+        errorDiv.style.display = 'block';
+        console.log('تعذر الاتصال بالسيرفر:', err);
+      }
+    };
+  }
+</script>
+  
+</head>
+<body>
+
+<!-- نافذة تسجيل الدخول الجديدة -->
+<div id="loginModal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <form id="loginForm" style="background:#fff;padding:32px 24px;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.2);width:95%;max-width:370px;display:flex;flex-direction:column;gap:18px;">
+      <h2 style="color:#1a73e8;text-align:center;margin-bottom:8px;font-weight:700;">تسجيل الدخول للمتجر</h2>
+      <input type="text" id="loginName" placeholder="الاسم" required style="padding:10px 12px;font-size:18px;border:1.5px solid #1a73e8;border-radius:7px;outline:none;">
+      <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required style="padding:10px 12px;font-size:18px;border:1.5px solid #1a73e8;border-radius:7px;outline:none;">
+      <input type="text" id="loginPhone" placeholder="رقم الهاتف" required style="padding:10px 12px;font-size:18px;border:1.5px solid #1a73e8;border-radius:7px;outline:none;">
+      <button type="submit" style="background:#1a73e8;color:#fff;font-size:20px;padding:10px 0;border:none;border-radius:7px;cursor:pointer;font-weight:600;">دخول</button>
+      <div id="loginMsg" style="text-align:center;font-size:16px;margin-top:4px;"></div>
+    </form>
+  </div>
+  <script>
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('loginForm');
+    const loginMsg = document.getElementById('loginMsg');
+  
+    // تحقق عند تحميل الصفحة: إذا كان المستخدم مسجّل، أخفِ المودال
+    window.addEventListener('DOMContentLoaded', function() {
+      if (
+        localStorage.getItem('userName') &&
+        localStorage.getItem('userEmail') &&
+        localStorage.getItem('userPhone')
+      ) {
+        loginModal.style.display = 'none';
+        document.body.style.overflow = '';
+      } else {
+        loginModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  
+    loginForm.onsubmit = async function(e) {
+      e.preventDefault();
+      loginMsg.textContent = '';
+      const name = document.getElementById('loginName').value.trim();
+      const email = document.getElementById('loginEmail').value.trim();
+      const phone = document.getElementById('loginPhone').value.trim();
+      if (!name || !email || !phone) {
+        loginMsg.textContent = 'يرجى ملء جميع الحقول';
+        loginMsg.style.color = 'red';
+        return;
+      }
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          loginMsg.textContent = 'تم تسجيل الدخول بنجاح!';
+          loginMsg.style.color = 'green';
+          // حفظ بيانات المستخدم في localStorage
+          localStorage.setItem('userName', name);
+          localStorage.setItem('userEmail', email);
+          localStorage.setItem('userPhone', phone);
+          setTimeout(() => {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = '';
+          }, 700);
+        } else {
+          loginMsg.textContent = data.message || 'حدث خطأ، حاول مرة أخرى';
+          loginMsg.style.color = 'red';
+        }
+      } catch (err) {
+        loginMsg.textContent = 'تعذر الاتصال بالخادم. تأكد أن السيرفر يعمل.';
+        loginMsg.style.color = 'red';
+      }
+    };
+  </script>
+  <!-- نهاية نافذة تسجيل الدخول الجديدة -->
+
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- زر تبديل الثيم -->
+    <button class="theme-toggle" id="themeToggle" title="تبديل الثيم">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- زر العودة للأعلى -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- شريط التنقل العلوي -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر" class="logo-img">
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav class="nav" id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">الصفحة الرئيسية</a></li>
+                    <li><a href="#products">المنتجات</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#about">قصتنا</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>مرحبًا بكم في -Salamos-</h1>
+                <p>اكتشف أحدث المنتجات والخدمات المميزة</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="cta-btn">تصفح المنتجات</a>
+                    <a href="#services" class="cta-btn">خدماتنا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المميزة</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/ماوس جيمينج ابيض.jpg" alt="ماوس جيمنج">
+                        <span class="category-tag">أدوات جيمينج</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>ماوس جيمنج لاسلكي</h3>
+                        <p class="product-desc">ماوس 3 في 1 لاسلكي بصري صامت، يدعم بلوتوث وUSB و يناسب كل أجهزتك</p>
+                        <div class="product-footer">
+                            <p class="product-price">45.99 AED</p>
+                            <a href="mouse-product.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/LED.png" alt="إضاءة led">
+                        <span class="category-tag">إلكترونيات</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>شريط إضاءة RGB - LED</h3>
+                        <p class="product-desc">شريط إضاءة RBG USB، إضاءة ذكية بلوتوث لتزيين الغرف وخلفيات التلفزيون</p>
+                        <div class="product-footer">
+                            <p class="product-price">27.99 AED</p>
+                            <a href="led-product.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/ساعة.avif" alt="ساعة ذكية">
+                        <span class="category-tag">إلكترونيات</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>ساعة ذكية T800 Ultra 2</h3>
+                        <p class="product-desc">ساعة ذكية متعددة المزايا مع شاشة لمس ومراقبة صحية</p>
+                        <div class="product-footer">
+                            <p class="product-price">34.99 AED</p>
+                            <a href="watch-product.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-products">
+                <a href="products.html" class="view-all-btn">عرض جميع المنتجات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">خدماتنا</h2>
+            <div class="services-cards">
+                <!-- بطاقات الخدمات -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>تصميم موقع ويب</h3>
+                    <p>نقدم خدمة تصميم مواقع ويب احترافية بتقنيات حديثة</p>
+                    <a href="web service.html" class="service-btn">
+                        <span>المزيد</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <h3>مونتاج فيديو</h3>
+                    <p>نقدم لكم خدمه مونتاج فيديو متكامل مع اضل البرامج و افضل التقنيات</p>
+                    <a href="video edit.html" class="service-btn">
+                        <span>المزيد</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عن المتجر -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">قصتنا</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>قصتنا:</h3>
+                    <p>
+                        نحن ثلاثة طلاب: طه محمد، محمد عنتر، وعمر محمود. قررنا في الإجازة المدرسية نعمل حاجة مفيدة ونستغل وقتنا بشكل إيجابي. بدل ما نضيع الإجازة في الكسل، اجتمعنا وبدأنا نخطط لمشروع بسيط نقدر نتعلم منه ونفيد غيرنا في نفس الوقت.
+                        
+                        ومن هنا بدأت فكرة إنشاء متجر إلكتروني يجمع بين المنتجات والخدمات، ويكون منظم ومرتب ويسهّل على أي شخص التصفح والاختيار.
+                        
+                        لكن مش بس كده!
+                        إحنا كمان بنقدم خدمات من شغلنا الشخصي زي:
+                        
+                        ✅ تصميم مواقع الويب بشكل احترافي ومتجاوب
+                        
+                        🎬 مونتاج الفيديوهات باحترافية وجودة عالية
+                        
+                        اشتغلنا سوا على تصميم الموقع، قسمنا المهام بيننا، واستخدمنا مهاراتنا في HTML وCSS والبرامج الإبداعية علشان نطلع بتصميم أنيق ,
+                        هدفنا مش بس البيع، لكن كمان إننا نقدم قيمة، ونتعلم ونتطور في مجالات بنحبها ❤️
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="index.html">المنتجات</a></li>
+                        <li><a href="index.html" class="active">الخدمات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul>
+                        <li><a href="web service.html">تصميم المواقع</a></li>
+                        <li><a href="video edit.html">مونتاج فيديو</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>اتصل بنا</h3>
+                    <p><i class="fas fa-envelope"></i>salamosshop@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +971 56 860 2206</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 جميع الحقوق محفوظة لـ متجرنا الإلكتروني</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        // عند تحميل الصفحة: طبّق الثيم المحفوظ أو الافتراضي
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  // يمكنك تحديث أيقونة الزر هنا إذا كان لديك زر
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  applyTheme(savedTheme);
+}
+
+// زر تبديل الثيم (لو موجود)
+document.getElementById('themeToggle').onclick = function() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+};
+
+loadTheme();
+
+
+        // عند تحميل الصفحة
+window.addEventListener('DOMContentLoaded', function() {
+  // تحقق إذا كان المستخدم شاهد الترحيب من قبل
+  if (localStorage.getItem('welcomeSeen')) {
+    // أخفِ نافذة الترحيب أو لا تظهرها
+    document.getElementById('welcomeModal').style.display = 'none';
+  } else {
+    // أظهر نافذة الترحيب
+    document.getElementById('welcomeModal').style.display = 'block';
+  }
+});
+
+// عند الضغط على "تخطي" أو "×" أو انتهاء الجولة
+function closeWelcome() {
+  localStorage.setItem('welcomeSeen', 'yes');
+  document.getElementById('welcomeModal').style.display = 'none';
+}
+
+// عند الضغط على "تسجيل الدخول"
+function showLogin() {
+  document.getElementById('loginModal').style.display = 'block';
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var modal = document.getElementById('registerModal');
+          var form = document.getElementById('registerForm');
+          if (!modal || !form) {
+            console.log('لم يتم العثور على نافذة أو نموذج التسجيل');
+            return;
+          }
+        
+          // إظهار أو إخفاء النافذة حسب وجود بيانات في LocalStorage
+          if (localStorage.getItem('userName') && localStorage.getItem('userEmail')) {
+            modal.style.display = 'none';
+            console.log('المستخدم مسجل مسبقًا، إخفاء نافذة التسجيل');
+          } else {
+            modal.style.display = 'flex';
+            console.log('المستخدم غير مسجل، عرض نافذة التسجيل');
+          }
+        
+          form.onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const errorDiv = document.getElementById('registerError');
+            errorDiv.style.display = 'none';
+        
+            if (!name || !email) {
+              errorDiv.textContent = 'يرجى إدخال الاسم والإيميل';
+              errorDiv.style.display = 'block';
+              console.log('الاسم أو الإيميل غير مدخل');
+              return;
+            }
+        
+            try {
+              const res = await fetch('http://127.0.0.1:5000/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone })
+              });
+              const data = await res.json();
+              console.log('رد السيرفر:', data);
+              if (res.ok) {
+                localStorage.setItem('userName', name);
+                localStorage.setItem('userEmail', email);
+                if (phone) localStorage.setItem('userPhone', phone);
+                modal.style.display = 'none';
+                console.log('تم التسجيل بنجاح، تم إخفاء نافذة التسجيل');
+              } else {
+                errorDiv.textContent = data.message || 'حدث خطأ أثناء التسجيل';
+                errorDiv.style.display = 'block';
+                console.log('فشل التسجيل:', data.message);
+              }
+            } catch (err) {
+              errorDiv.textContent = 'تعذر الاتصال بالخادم. تأكد أن السيرفر يعمل.';
+              errorDiv.style.display = 'block';
+              console.log('تعذر الاتصال بالسيرفر:', err);
+            }
+          };
+        });
+        </script>
+        
+</body>
+</html>

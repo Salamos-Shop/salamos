@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمة المونتاج الاحترافية - قريباً</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* أنماط الصفحة */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+    
+    /* زر العودة */
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #4361ee, #3a0ca3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      z-index: 10000;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInDown 0.5s 0.3s forwards;
+    }
+    
+    .back-btn:hover {
+      background: linear-gradient(135deg, #f72585, #b5179e);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(247, 37, 133, 0.4);
+    }
+    
+    /* طبقة "قريباً" */
+    .coming-soon-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    .coming-soon-card {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 2px solid #f72585;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: scaleIn 0.6s 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    
+    /* تأثيرات الحركة */
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px rgba(247, 37, 133, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(247, 37, 133, 0.5); }
+      100% { box-shadow: 0 0 10px rgba(247, 37, 133, 0.3); }
+    }
+    
+    .coming-soon-icon {
+      font-size: 5rem;
+      color: #f72585;
+      margin-bottom: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .coming-soon-title {
+      font-size: 2.5rem;
+      color: #3a0ca3;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .coming-soon-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #4361ee, #f72585);
+    }
+    
+    .coming-soon-message {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+    
+    .highlight {
+      color: #f72585;
+      font-weight: bold;
+    }
+    
+    .countdown {
+      font-size: 1.5rem;
+      color: #3a0ca3;
+      margin: 1.5rem 0;
+    }
+    
+    .countdown span {
+      font-weight: bold;
+      color: #f72585;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .social-links a {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #4361ee, #3a0ca3);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s forwards;
+    }
+    
+    .social-links a:nth-child(1) { animation-delay: 0.6s; }
+    .social-links a:nth-child(2) { animation-delay: 0.7s; }
+    .social-links a:nth-child(3) { animation-delay: 0.8s; }
+    .social-links a:nth-child(4) { animation-delay: 0.9s; }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* منع التصفح */
+    body.block-scroll {
+      overflow: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      .coming-soon-card {
+        padding: 2rem;
+      }
+      
+      .coming-soon-title {
+        font-size: 2rem;
+      }
+      
+      .coming-soon-message {
+        font-size: 1rem;
+      }
+      
+      .coming-soon-icon {
+        font-size: 3.5rem;
+      }
+      
+      .back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body class="block-scroll">
+  <!-- زر العودة -->
+  <a href="index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> الرئيسية
+  </a>
+  
+  <!-- طبقة "قريباً" -->
+  <div class="coming-soon-overlay">
+    <div class="coming-soon-card">
+      <div class="coming-soon-icon">
+        <i class="fas fa-rocket"></i>
+      </div>
+      
+      <h1 class="coming-soon-title">خدمة المونتاج الاحترافية قريباً!</h1>
+      
+      <div class="coming-soon-message">
+        <p>نحن نعمل بجد لتقديم <span class="highlight">أفضل خدمات المونتاج</span> لكم</p>
+        <p>ستكون الخدمة متاحة خلال أيام قليلة بميزات <span class="highlight">غير مسبوقة</span></p>
+        <p>احصل على <span class="highlight">خصم 20%</span> عند الافتتاح للأوائل</p>
+      </div>
+      
+      <div class="social-links">
+        <a href="https://wa.me/971568602206?text=مرحباً, أريد الاستفسار عن خدمات المونتاج" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@tahamohamedsalama" target="_blank">
+  <i class="fab fa-tiktok"></i> 
+</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // عداد تنازلي وهمي
+    const countdown = () => {
+      const daysElement = document.getElementById('days');
+      let days = 7;
+      
+      const timer = setInterval(() => {
+        days--;
+        daysElement.textContent = days;
+        
+        if (days <= 0) {
+          clearInterval(timer);
+          daysElement.textContent = "اليوم!";
+        }
+      }, 86400000);
+    };
+    
+    // بدء العد التنازلي عند تحميل الصفحة
+    window.addEventListener('load', countdown);
+    
+    // منع أي تفاعل مع الصفحة الأصلية
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.coming-soon-card') && !e.target.closest('.back-btn')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // تأثير اهتزاز عند محاولة النقر
+        const card = document.querySelector('.coming-soon-card');
+        card.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          card.style.animation = '';
+        }, 500);
+      }
+    }, true);
+    
+    // إضافة تأثير الاهتزاز
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        50% { transform: translateX(10px); }
+        75% { transform: translateX(-10px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

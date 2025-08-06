@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماوس جيمنج لاسلكي احترافي - Salamos</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1a237e;
+            --secondary-color: #34a853;
+            --accent-color: #ffbe0b;
+            --error-color: #ff3860;
+            /* Light Theme */
+            --light-bg: #f6f8fa;
+            --lighter-bg: #ffffff;
+            --light-card-bg: #ffffff;
+            --light-text: #3a3333;
+            --light-text-secondary: #6c757d;
+            --light-border: #e3e8ee;
+            --light-glass: rgba(255,255,255,0.85);
+            /* Dark Theme */
+            --dark-bg: #000;
+            --darker-bg: #111;
+            --dark-card-bg: #181818;
+            --dark-text: #fff;
+            --dark-text-secondary: #ccc;
+            --dark-border: #222;
+            --dark-glass: rgba(20,20,20,0.85);
+            /* Shared */
+            --header-footer-bg-light: linear-gradient(135deg, #2563eb, #085cd1 90%);
+            --header-footer-bg-dark: linear-gradient(135deg, #2563eb, #085cd1 90%);
+             
+            --base-padding: 1.25rem;
+            --large-padding: 2rem;
+            --section-margin: 3rem;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+            --transition-speed: 0.3s;
+            --transition-timing: cubic-bezier(0.4,0,0.2,1);
+            --font-size-base: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-xl: 1.5rem;
+            --font-size-xxl: 2rem;
+            --line-height: 1.6;
+        }
+
+        [data-theme="light"] {
+            --bg-color: var(--light-bg);
+            --bg-darker: var(--lighter-bg);
+            --card-bg: var(--light-card-bg);
+            --text-color: var(--light-text);
+            --text-secondary: var(--light-text-secondary);
+            --border-color: var(--light-border);
+            --glass-bg: var(--light-glass);
+            --header-footer-bg: var(--header-footer-bg-light);
+            --header-footer-text: var(--header-footer-text);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: var(--dark-bg);
+            --bg-darker: var(--darker-bg);
+            --card-bg: var(--dark-card-bg);
+            --text-color: var(--dark-text);
+            --text-secondary: var(--dark-text-secondary);
+            --border-color: var(--dark-border);
+            --glass-bg: var(--dark-glass);
+            --header-footer-bg: var(--header-footer-bg-dark);
+            --header-footer-text: var(--header-footer-text);
+        }
+
+        /* إعادة تعيين عام */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color var(--transition-speed) var(--transition-timing),
+                        color var(--transition-speed) var(--transition-timing),
+                        border-color var(--transition-speed) var(--transition-timing);
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: var(--line-height);
+            font-size: var(--font-size-base);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--large-padding);
+        }
+
+        /* تحسينات الهيدر */
+        header {
+            background: var(--header-footer-bg);
+            color: var(--header-footer-text);
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            border-bottom: 3px solid var(--accent-color);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: var(--font-size-xxl);
+            margin: 0;
+            font-weight: 700;
+            padding: 0 var(--base-padding);
+            color: #fff !important;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all var(--transition-speed) var(--transition-timing);
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(32, 32, 32, 0.15);
+            color: var(--primary-dark);
+        }
+
+        /* بانر العرض الترويجي */
+        .promo-banner {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            padding: var(--base-padding);
+            border-radius: var(--border-radius);
+            margin: var(--base-padding) 0;
+            box-shadow: var(--box-shadow);
+            animation: pulse 2s infinite;
+        }
+
+        .promo-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--base-padding);
+        }
+
+        .promo-icon {
+            font-size: 2.5em;
+            color: white;
+            animation: bounce 1s infinite;
+        }
+
+        .promo-text {
+            flex: 1;
+            color: white;
+        }
+
+        .promo-text h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .promo-text p {
+            font-size: var(--font-size-lg);
+            margin: 0;
+        }
+
+        .promo-badge {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            transform: rotate(-5deg);
+            animation: shake 2s infinite;
+        }
+
+        .promo-badge span {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: var(--font-size-lg);
+        }
+
+        /* تحسينات قسم المنتج */
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: var(--section-margin);
+        }
+
+        .product-gallery {
+            position: relative;
+            padding: var(--large-padding);
+            background: linear-gradient(135deg, var(--card-bg), var(--bg-darker));
+            order: 2;
+        }
+
+        .main-image-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: var(--card-bg);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: var(--base-padding);
+            transition: transform 0.5s ease;
+        }
+
+        .main-image:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-panel {
+            display: flex;
+            gap: 0.75rem;
+            margin: 1.5rem 0 0 0;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--transition-timing);
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-label {
+            font-size: var(--font-size-lg);
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .image-counter {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: var(--font-size-base);
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed) var(--transition-timing);
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .left-arrow {
+            right: 1rem;
+        }
+
+        .right-arrow {
+            left: 1rem;
+        }
+
+        .product-info {
+            padding: var(--large-padding);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            order: 1;
+        }
+
+        .product-title {
+            font-size: var(--font-size-xxl);
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .product-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+
+        .product-price {
+            font-size: var(--font-size-xxl);
+            color: var(--accent-color);
+            font-weight: bold;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            font-size: var(--font-size-xl);
+        }
+
+        .discount-badge {
+            background-color: var(--accent-color);
+            color: var(--darker-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: var(--font-size-lg);
+            font-weight: bold;
+        }
+
+        .final-price {
+            color: var(--accent-color);
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            font-size: var(--font-size-lg);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .product-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-color);
+            font-size: var(--font-size-lg);
+        }
+
+        .product-features li i {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            min-width: 1.5rem;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: var(--font-size-lg);
+            font-weight: bold;
+            text-align: center;
+            transition: all var(--transition-speed) var(--transition-timing);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
+            margin-top: 1.5rem;
+            width: fit-content;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+        }
+
+        .product-meta {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            min-width: 1.5rem;
+        }
+
+        /* جدول المواصفات */
+        .specs-table-wrapper {
+            width: 100%;
+            margin: 2rem auto 0 auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: var(--bg-darker);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--font-size-lg);
+            text-align: right;
+        }
+
+        .specs-table th {
+            background: var(--bg-darker);
+            color: var(--accent-color);
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .specs-table tr {
+            background: var(--bg-darker);
+        }
+
+        .specs-table tr:nth-child(even) {
+            background: var(--card-bg);
+        }
+
+        .specs-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: var(--font-size-base);
+        }
+
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .specs-table td:first-child {
+            font-weight: bold;
+            color: var(--primary-color);
+            width: 38%;
+            padding-right: 1rem;
+        }
+
+        /* قسم الشحن والإرجاع */
+        .shipping-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .shipping-section h2 {
+            font-size: var(--font-size-xxl);
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .shipping-section p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-lg);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* قسم الاتصال */
+        .contact-section {
+            background: var(--card-bg);
+            padding: 3rem 0;
+            margin-top: var(--section-margin);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: var(--font-size-xxl);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-section p {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .contact-section a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color var(--transition-speed) var(--transition-timing);
+        }
+
+        .contact-section a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* الفوتر */
+        footer {
+            background: var(--header-footer-bg);
+            color: var(--header-footer-text);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: var(--section-margin);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        footer .container {
+            padding: 0 var(--base-padding);
+        }
+
+        footer p {
+            font-size: var(--font-size-base);
+        }
+
+        /* زر تبديل الثيم */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--box-shadow);
+            z-index: 1000;
+            transition: all var(--transition-speed) var(--transition-timing);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-dark);
+        }
+
+        /* تأثيرات الحركة */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-gallery {
+                order: 1;
+            }
+            
+            .product-info {
+                order: 2;
+            }
+            
+            .main-image-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --base-padding: 1rem;
+                --large-padding: 1.5rem;
+                --font-size-base: 0.95rem;
+                --font-size-lg: 1.1rem;
+                --font-size-xl: 1.3rem;
+                --font-size-xxl: 1.6rem;
+            }
+            
+            .container {
+                padding: var(--base-padding);
+            }
+            
+            header h1 {
+                font-size: var(--font-size-xl);
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 0 auto 1rem auto;
+                display: inline-flex;
+                width: fit-content;
+            }
+            
+            .product-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .product-price {
+                font-size: var(--font-size-xl);
+                margin: 1rem 0;
+            }
+            
+            .original-price {
+                font-size: var(--font-size-lg);
+            }
+            
+            .product-description {
+                font-size: var(--font-size-base);
+            }
+            
+            .buy-button {
+                width: 100%;
+                padding: 1rem;
+                font-size: var(--font-size-base);
+            }
+            
+            .main-image-container {
+                height: 300px;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .promo-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .promo-badge {
+                margin-top: 0.5rem;
+            }
+            
+            .main-image-container {
+                height: 250px;
+            }
+            
+            .product-features li {
+                font-size: var(--font-size-base);
+            }
+            
+            .specs-table {
+                font-size: var(--font-size-base);
+            }
+            
+            .specs-table th {
+                font-size: var(--font-size-lg);
+            }
+        }
+
+        [data-theme="dark"] .contact-section h3 {
+            color: #fff !important;
+        }
+
+        [data-theme="dark"] .shipping-section h2 {
+            color: #f5f6fa !important;
+        }
+        [data-theme="dark"] .shipping-section p {
+            color: #e0e6ed !important;
+        }
+
+        [data-theme="dark"] h2 {
+            color: #fff !important;
+        }
+
+        .specs-table-wrapper {
+            max-width: 700px;
+            margin: 32px auto 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #f6f9fb;
+            border: none;
+            box-shadow: none;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.13em;
+            text-align: right;
+            background: #f6f9fb;
+        }
+        .specs-table th {
+            background: #eaf1fa;
+            color: #222;
+            font-size: 1.35em;
+            font-weight: bold;
+            text-align: center;
+            padding: 22px 0 18px 0;
+            border-bottom: 2px solid #e3e8ee;
+        }
+        .specs-table tr {
+            background: #f6f9fb;
+        }
+        .specs-table tr:nth-child(even) {
+            background: #f0f4f8;
+        }
+        .specs-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e3e8ee;
+            color: #222;
+            font-size: 1.08em;
+        }
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+        .specs-table td:first-child {
+            font-weight: bold;
+            color: #2563eb;
+            width: 38%;
+            padding-left: 0;
+            padding-right: 15px;
+        }
+
+        [data-theme="dark"] .specs-table-wrapper {
+            background: #aeb0b3;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+        }
+        [data-theme="dark"] .specs-table {
+            background: #aeb0b3;
+        }
+        [data-theme="dark"] .specs-table th {
+            background: #296af5;
+            color: #23272f;
+            border-bottom: 2px solid #cfd8dc;
+        }
+        [data-theme="dark"] .specs-table tr {
+            background: #e1e8ef;
+        }
+        [data-theme="dark"] .specs-table tr:nth-child(even) {
+            background: #cbd2d5;
+        }
+        [data-theme="dark"] .specs-table td {
+            color: #23272f;
+            border-bottom: 1px solid #cfd8dc;
+        }
+        [data-theme="dark"] .specs-table td:first-child {
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i>
+            العودة للرئيسية
+        </a>
+        <div class="container">
+            <h1>ماوس جيمينج لاسلكي</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="promo-banner">
+            <div class="promo-content">
+                <div class="promo-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="promo-text">
+                    <h3>عرض افتتاحي!</h3>
+                    <p>احصل على خصم 50% على الماوس الجيمنج اللاسلكي</p>
+                </div>
+                <div class="promo-badge">
+                    <span>خصم 50%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <button class="gallery-arrow left-arrow" onclick="prevImage()"><i class="fas fa-chevron-right"></i></button>
+                    <img src="images/salamos-shop-images/ماوس جيمينج ابيض.jpg" alt="ماوس جيمنج" class="main-image" id="mainImage">
+                    <button class="gallery-arrow right-arrow" onclick="nextImage()"><i class="fas fa-chevron-left"></i></button>
+                    <div class="image-counter" id="imageCounter">1/6</div>
+                </div>
+                
+                <span class="color-label" id="selectedColorText">اللون: أبيض</span>
+                
+                <div class="photo-panel">
+                    <img src="images/salamos-shop-images/ماوس جيمينج ابيض.jpg" alt="ماوس أبيض" class="thumbnail active" data-index="0" data-color="أبيض">
+                    <img src="images/salamos-shop-images/ماوس جيمينج وردي.jpg" alt="ماوس وردي" class="thumbnail" data-index="1" data-color="وردي">
+                </div>
+                
+                <div class="specs-table-wrapper">
+                    <table class="specs-table">
+                        <tr><th colspan="2">المواصفات التقنية</th></tr>
+                        <tr><td>اسم المنتج:</td><td>ماوس جيمنج لاسلكي (dtvane)</td></tr>
+                        <tr><td>نوع الاتصال:</td><td>بلوتوث + USB 2.4GHz</td></tr>
+                        <tr><td>عدد الأزرار:</td><td>6 أزرار + 3 مستوايات من DPI</td></tr>
+                        <tr><td>الإضاءة:</td><td>إضاءة RGB تبديل تلقائي ل7 الوان</td></tr>
+                        <tr><td>البطارية:</td><td>قابلة الشحن (تدوم البطارية طويلا)</td></tr>
+                        <tr><td>الدقة (DPI):</td><td>1200/1600/2000</td></tr>
+                        <tr><td>اللون:</td><td>أبيض / وردي</td></tr>
+                        <tr><td>اسم العلامة التجارية:</td><td>dtvane</td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">ماوس جيمنج لاسلكي احترافي</h1>
+                
+                <div class="product-price">
+                    <span class="original-price">91.99 AED</span>
+                    <span class="discount-badge">خصم 50%</span>
+                    <span class="final-price">45.99 AED</span>
+                </div>
+                
+                <p class="product-description">
+                    استمتع بتجربة استخدام سلسة ومريحة مع ماوس بصري لاسلكي قابل لإعادة الشحن، يدعم الاتصال المزدوج عبر بلوتوث وUSB 2.4GHz لتوافق مثالي مع أجهزة الكمبيوتر المحمول، الـ MacBook، والتابلت.
+                </p>
+                
+                <ul class="product-features">
+                    <li><i class="fas fa-check"></i> صامت بالكامل - مثالي للعمل والمذاكرة بدون إزعاج</li>
+                    <li><i class="fas fa-check"></i> تصميم مريح وخفيف - استخدام طويل بدون تعب</li>
+                    <li><i class="fas fa-check"></i> إضاءة خلفية RGB - لمسة جمالية أنيقة ومميزة</li>
+                    <li><i class="fas fa-check"></i> بطارية مدمجة - شحن سهل واستخدام يدوم</li>
+                    <li><i class="fas fa-check"></i> توصيل سريع ومستقر - بدون تأخير أو تقطيع</li>
+                </ul>
+                
+                <button class="buy-button" id="buyNowBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    اشتري الان - الشحن مجاني
+                </button>
+                <hr style="border: none; border-top: 1.5px solid #e3e8ee; margin: 40px 0 30px 0;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="font-size:2.2em; font-weight:700; color:#1f7cff; margin-bottom:18px;">الشحن والإرجاع</h2>
+                    <p style="color:#6c757d; font-size:1.25em; margin-bottom:10px;">
+                        يتم شحن هذا المنتج مباشرة من مستودعاتنا في الخارج (AliExpress). قد يستغرق الشحن ما بين 7 إلى 14 يوم عمل اعتمادًا على موقعك. يرجى ملاحظة أن اختلافًا طفيفًا قد يظهر بين القياسات اليدوية والبيانات المقدمة.
+                    </p>
+                    <p style="color:#6c757d; font-size:1.15em;">
+                        سياسة الإرجاع: يمكن إرجاع المنتج خلال 14 يومًا من الاستلام في حالته الأصلية. يتحمل العميل تكلفة الشحن للإرجاع.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section" id="contact">
+            <h3>اتصل بنا</h3>
+            <p>لأي استفسارات، يرجى التواصل معنا عبر البريد الإلكتروني:</p>
+            <p>البريد الإلكتروني: <a href="mailto:salamosshop@gmail.com">salamosshop@gmail.com</a></p>
+            <p>نتطلع لخدمتكم على مدار الساعة!</p>
+        </div>
+    </div>
+ 
+    <footer>
+        <div class="container">
+            <p>© 2025 Salamos. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    
+    <button class="theme-toggle" id="themeToggle" title="تبديل الثيم">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <script>
+        // تبديل الثيم
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+        
+        // معرض الصور
+        const mouseImages = [
+            'images/salamos-shop-images/ماوس جيمينج ابيض.jpg',
+            'images/salamos-shop-images/ماوس جيمينج وردي.jpg',
+            'images/salamos-shop-images/ماوس 3.avif',
+            'images/salamos-shop-images/ماوس 4.avif',
+            'images/salamos-shop-images/ماوس 6.avif',
+            'images/salamos-shop-images/ماوس 5.avif'
+        ];
+        
+        let currentMouseIndex = 0;
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('mainImage');
+        const imageCounter = document.getElementById('imageCounter');
+        const selectedColorText = document.getElementById('selectedColorText');
+        
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                currentMouseIndex = parseInt(thumb.getAttribute('data-index'));
+                updateMainImage();
+                
+                // تحديث نص اللون
+                const selectedColor = thumb.getAttribute('data-color');
+                if(selectedColor) {
+                    selectedColorText.textContent = 'اللون: ' + selectedColor;
+                }
+            });
+        });
+        
+        function updateMainImage() {
+            mainImage.src = mouseImages[currentMouseIndex];
+            imageCounter.textContent = `${currentMouseIndex + 1}/${mouseImages.length}`;
+            
+            // تحديث تفعيل thumbnail حسب الصورة الحالية (فقط إذا كانت 0 أو 1)
+            thumbnails.forEach(t => t.classList.remove('active'));
+            if (currentMouseIndex === 0 || currentMouseIndex === 1) {
+                thumbnails[currentMouseIndex].classList.add('active');
+            }
+        }
+        
+        function nextImage() {
+            currentMouseIndex = (currentMouseIndex + 1) % mouseImages.length;
+            updateMainImage();
+        }
+        
+        function prevImage() {
+            currentMouseIndex = (currentMouseIndex - 1 + mouseImages.length) % mouseImages.length;
+            updateMainImage();
+        }
+        
+        // Initialize
+        updateMainImage();
+        
+        // زر الشراء
+        const buyNowBtn = document.getElementById('buyNowBtn');
+        buyNowBtn.addEventListener('click', function() {
+            window.location.href = 'mouse-pay.html';
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جميع المنتجات - Salamos</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #333;
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --transition-speed: 0.3s;
+            --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-bg: #f8f9fa;
+            --darker-bg: #e9ecef;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* شريط التنقل */
+        .header {
+            background-color: var(--darker-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s var(--transition-timing);
+        }
+
+        [data-theme="light"] .logo img {
+            filter: brightness(0) invert(0);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav ul li {
+            margin-left: 25px;
+        }
+
+        .nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 22px;
+            transition: color 0.3s;
+        }
+
+        .nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* قسم المنتجات */
+        .products-page {
+            padding: 80px 0 60px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .product-image {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 15px;
+        }
+
+        .product-image img {
+            width: 95%;
+            height: 95%;
+            object-fit: contain;
+            transition: transform 0.3s;
+            padding: 0;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            line-height: 1.3;
+        }
+
+        .product-desc {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 18px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding: 0 10px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* زر العودة للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* زر تبديل الثيم */
+        .theme-toggle {
+            position: fixed;
+            bottom: 70px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .theme-toggle i {
+            transition: transform 0.5s var(--transition-timing);
+        }
+
+        .theme-toggle:hover i {
+            transform: rotate(180deg);
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 32px;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 28px;
+            }
+
+            .product-card {
+                height: 500px;
+            }
+
+            .product-image {
+                height: 280px;
+                padding: 10px;
+            }
+        }
+
+        /* تنسيق زر العودة */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .back-button i {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- زر العودة -->
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-right"></i>
+        العودة
+    </a>
+
+    <!-- زر تبديل الثيم -->
+    <button class="theme-toggle" id="themeToggle" title="تبديل الثيم">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- قسم المنتجات -->
+    <section class="products-page">
+        <div class="container">
+            <h1 class="page-title">جميع المنتجات</h1>
+            
+            <!-- فلاتر المنتجات -->
+            <div class="filters">
+                <button class="filter-btn active" data-category="all">الكل</button>
+                <button class="filter-btn" data-category="electronics">إلكترونيات</button>
+                <button class="filter-btn" data-category="gaming">أدوات جيمينج</button>
+                <button class="filter-btn" data-category="clothes">ساعات</button>
+            </div>
+
+            <!-- شبكة المنتجات -->
+            <div class="products-grid">
+                <!-- منتج 1 -->
+                <div class="product-card" data-category="electronics">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/LED.png" alt="شريط إضاءة">
+                        <span class="category-tag">إلكترونيات</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>شريط إضاءة RBG - LED</h3>
+                        <p class="product-desc">شريط إضاءة RBG USB ذكي مع تقنية بلوتوث، يوفر إضاءة متعددة الألوان لتزيين الغرف وخلفيات التلفزيون</p>
+                        <div class="product-footer">
+                            <p class="product-price">27.99 AED</p>
+                            <a href="led-product.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 2 -->
+                <div class="product-card" data-category="gaming">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/ماوس جيمينج ابيض.jpg" alt="ماوس جيمنج">
+                        <span class="category-tag">أدوات جيمينج</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>ماوس جيمنج لاسلكي</h3>
+                        <p class="product-desc">ماوس 3 في 1 لاسلكي بصري صامت، يدعم بلوتوث وUSB</p>
+                        <div class="product-footer">
+                            <p class="product-price">45.99 AED</p>
+                            <a href="mouse-product.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 3 -->
+                <div class="product-card" data-category="clothes">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/Se040a26cbcca49f8bd2384ca3478bf65Y.jpg_960x960q75.jpg_.avif" alt="ساعه كلاسيك فاخرة">
+                        <span class="category-tag">ساعات</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>ساعة كلاسيك PAAZOMU (رجالي/نسائي)</h3>
+                        <p class="product-desc">ساعة كلاسيك مقاوم للماء , مصنوع من فولاذ مقاوم للصدأ</p>
+                        <div class="product-footer">
+                            <p class="product-price">74.99 AED</p>
+                            <a href="Classic watch.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 4 -->
+                <div class="product-card" data-category="gaming">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/سماعة-جيمينج-ازرق_ كعدلة.png" alt="سماعة رأس جيمنج">
+                        <span class="category-tag">أدوات جيمينج</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>سماعة رأس جيمنج</h3>
+                        <p class="product-desc">سماعة رأس جيمنج مع ميكروفون عالي الجودة,و استجابة سريعه للصوت</p>
+                        <div class="product-footer">
+                            <p class="product-price">29.99 AED</p>
+                            <a href="gaming headset.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 5 -->
+                <div class="product-card" data-category="">
+                    <div class="product-image">
+                        <img src="" alt="؟؟؟؟">
+                        <span class="category-tag">مفاجأة 🎉</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>انتظرونا 😍</h3>
+                        <p class="product-desc">قريباً - Soon</p>
+                        <div class="product-footer">
+                            <p class="product-price">????</p>
+                            <a href="#" class="add-to-cart">قريباً - Soon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج جديد -->
+                <div class="product-card" data-category="electronics">
+                    <div class="product-image">
+                        <img src="images/salamos-shop-images/ساعة.avif" alt="ساعة ذكية">
+                        <span class="category-tag">إلكترونيات</span>
+                    </div>
+                    <div class="product-info">
+                    <h3>ساعة ذكية T800 Ultra 2</h3>
+                        <p class="product-desc">ساعة ذكية متطورة مع شاشة لمس عالية الدقة ومراقبة صحية متكاملة</p>
+                        <div class="product-footer">
+                            <p class="product-price">34.84 AED</p>
+                    <a href="watch-product.html" class="add-to-cart">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- زر العودة للأعلى -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // تطبيق الثيم المحفوظ عند تحميل الصفحة
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        function updateThemeIcon(theme) {
+            const themeIcon = document.getElementById('themeToggle').querySelector('i');
+            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            updateThemeIcon(savedTheme);
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+        });
+
+        // كود تصفية المنتجات
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // إزالة الفئة النشطة من جميع الأزرار
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // إضافة الفئة النشطة للزر المحدد
+                button.classList.add('active');
+
+                const category = button.getAttribute('data-category');
+
+                productCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // كود زر العودة للأعلى
+        const scrollToTop = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        });
+
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salamos Web | تصميم مواقع احترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+    /* المتغيرات الأساسية */
+    :root {
+        /* الألوان الأساسية */
+        --primary: #407ef0;
+        --primary-light: #8FD6FF;
+        --secondary: #528af4;
+        --accent: #8FD6FF;
+        --text: #1E293B;
+        --text-light: #64748B;
+        --bg: #F8FAFC;
+        --card-bg: #FFFFFF;
+        --border: #E2E8F0;
+        
+        /* الظلال */
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        
+        /* المسافات */
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        
+        /* الزوايا */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+        
+        /* الانتقالات */
+        --transition: all 0.3s ease;
+    }
+
+    /* الثيم البارد (ألوان هادئة) */
+    [data-theme="cool"] {
+        --primary: #658cf0;
+        --primary-light: #B39DDB;
+        --secondary: #67fffa;
+        --accent: #D1C4E9;
+        --text: #263238;
+        --text-light: #7a5f54;
+        --bg: #86c1e4;
+        --card-bg: #B9E5E8;
+        --border: #192281;
+    }
+
+    /* الثيم الزاهي (ألوان مشبعة) */
+    [data-theme="vibrant"] {
+        --primary: #f05a3c;
+        --primary-light: #FF8A65;
+        --secondary: #fe8a72;
+        --accent: #FFCCBC;
+        --text: #212121;
+        --text-light: #623c2c;
+        --bg: #f3dc8b;
+        --card-bg: #EDF4C2;
+        --border: #DF9755;
+    }
+
+    /* الثيم الداكن (ألوان أرضية) */
+    [data-theme="dark"] {
+        --primary: #a36f5f;
+        --primary-light: #382a2a;
+        --secondary: #2b130b;
+        --accent: #f7eded;
+        --text: #fdfeff;
+        --text-light: #daeff9;
+        --bg: #211515;
+        --card-bg: #462a2a;
+        --border: #5d4343;
+    }
+
+    /* الأنماط العامة */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Tajawal', sans-serif;
+    }
+    
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+        transition: var(--transition);
+        line-height: 1.6;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+    }
+
+    section {
+        padding: var(--space-xl) 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h1, h2, h3, h4 {
+        color: var(--text);
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+    
+    p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    /* الهيدر */
+    .hero {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 6rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: var(--space-sm);
+        color: white;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        color: rgba(255,255,255,0.9);
+        max-width: 600px;
+        margin: 0 auto var(--space-lg);
+    }
+
+    /* كروت المميزات */
+    .features {
+        background-color: var(--bg);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin-top: var(--space-xl);
+    }
+
+    .feature-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        counter-increment: feature-counter;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card::before {
+        content: counter(feature-counter);
+        position: absolute;
+        top: var(--space-sm);
+        left: var(--space-sm);
+        font-size: 3rem;
+        font-weight: 700;
+        color: rgba(var(--primary), 0.1);
+        z-index: 1;
+    }
+
+    .feature-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .feature-card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: var(--space-sm);
+    }
+
+    .feature-card h3 {
+        margin-bottom: var(--space-sm);
+        color: var(--primary);
+    }
+
+    /* قسم من نحن */
+    .about {
+        background-color: var(--card-bg);
+        position: relative;
+    }
+
+    .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* قسم الباقات */
+    .pricing {
+        background-color: var(--bg);
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin-top: var(--space-xl);
+    }
+
+    .pricing-card {
+        background-color: var(--card-bg);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        text-align: center;
+    }
+
+    .pricing-card.popular {
+        border: 2px solid var(--primary);
+        transform: scale(1.05);
+    }
+
+    .pricing-card h3 {
+        color: var(--primary);
+        margin-bottom: var(--space-sm);
+    }
+
+    .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin: var(--space-md) 0;
+    }
+
+    .price span {
+        font-size: 1rem;
+        color: var(--text-light);
+    }
+
+    .pricing-features {
+        list-style: none;
+        margin-bottom: var(--space-lg);
+    }
+
+    .pricing-features li {
+        padding: var(--space-xs) 0;
+        border-bottom: 1px dashed var(--border);
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: var(--primary);
+        color: white;
+        padding: var(--space-sm) var(--space-lg);
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+    }
+
+    /* تبديل الثيمات */
+    .theme-switcher {
+        position: fixed;
+        top: 50%;
+        left: var(--space-md);
+        transform: translateY(-50%);
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .theme-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .theme-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .theme-btn i {
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    .theme-btn.cool { background: linear-gradient(135deg, #2a5cf2, #61c7f9); }
+    .theme-btn.vibrant { background: linear-gradient(135deg, #fc5523, #ffe06f); }
+    .theme-btn.dark { background: linear-gradient(135deg, #431f12, #ae705c); }
+
+    /* الفوتر */
+    footer {
+        background-color: var(--primary);
+        color: white;
+        text-align: center;
+        padding: var(--space-lg) 0;
+        margin-top: var(--space-xl);
+    }
+
+    /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+        .theme-switcher {
+            flex-direction: row;
+            top: auto;
+            bottom: var(--space-md);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.75rem; }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    /* زر العودة للأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 99;
+    border: none;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* زر العودة للرئيسية في الهيدر */
+.home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    text-decoration: none;
+}
+
+.home-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.home-button i {
+    font-size: 0.9rem;
+}
+
+/* تكيف مع الجوال */
+@media (max-width: 768px) {
+    .back-to-top {
+        left: 20px;
+        bottom: 20px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .home-button {
+        top: 15px;
+        left: 15px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+    </style>
+</head>
+<body data-theme="cool">
+    <!-- أزرار تبديل الثيمات -->
+    <div class="theme-switcher">
+        <button class="theme-btn cool" data-theme="cool" title="الثيم البارد">
+            <i class="fas fa-snowflake"></i>
+        </button>
+        <button class="theme-btn vibrant" data-theme="vibrant" title="الثيم الزاهي">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="theme-btn dark" data-theme="dark" title="الثيم الداكن">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="hero">
+          <!-- زر العودة للرئيسية -->
+    <a href="index.html" class="home-button" aria-label="العودة للرئيسية">
+        <i class="fas fa-home"></i>
+        <span>الرئيسية</span>
+    </a>
+
+        <div class="hero-content">
+            <h1>مرحباً بكم في Salamos Web</h1>
+            <p>نقدم لكم حلول تصميم المواقع الاحترافية التي تجمع بين الجمال والأداء المتميز</p>
+        </div>
+    </header>
+
+    <!-- زر العودة للأعلى (يضاف قبل </body>) -->
+    <button class="back-to-top" aria-label="العودة إلى الأعلى">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- مميزات الشركة -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار Salamos Web؟</h2>
+            <p class="section-subtitle">نحن نقدم حلولاً رقمية استثنائية تلبي احتياجات عملك</p>
+            
+            <div class="features-grid">
+                <!-- المميزة 1 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <i class="fas fa-palette"></i>
+                        <h3>تصميم عصري وجذاب</h3>
+                        <p>تصاميمنا تتميز بالحداثة والجاذبية مع الحفاظ على الهوية البصرية لعلامتك التجارية</p>
+                    </div>
+                </div>
+                
+                <!-- المميزة 2 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>تصميم متجاوب</h3>
+                        <p>مواقعنا تعمل بكفاءة على جميع الأجهزة من الهواتف إلى أجهزة الكمبيوتر المكتبية</p>
+                    </div>
+                </div>
+                
+                <!-- المميزة 3 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>أداء فائق السرعة</h3>
+                        <p>تحميل سريع للمحتوى وتحسين أداء الموقع لمحركات البحث</p>
+                    </div>
+                </div>
+                
+                <!-- المميزة 4 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>حماية وأمان</h3>
+                        <p>نضمن حماية بياناتك وخصوصية زوار موقعك بأحدث تقنيات الأمان</p>
+                    </div>
+                </div>
+                
+                <!-- المميزة 5 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <i class="fas fa-headset"></i>
+                        <h3>دعم فني متكامل</h3>
+                        <p>فريق دعم فني متاح على مدار الساعة لمساعدتك في أي استفسار</p>
+                    </div>
+                </div>
+                
+                <!-- المميزة 6 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>أسعار تنافسية</h3>
+                        <p>نقدم أفضل الحلول التقنية بأفضل الأسعار التنافسية في السوق</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">من نحن؟</h2>
+                <p>Salamos Web هي شركة متخصصة في تصميم وتطوير المواقع الإلكترونية وتقديم الحلول الرقمية المتكاملة. تأسست عام 2025 بمجموعة من المطورين والمصممين المبدعين الذين يجمعون بين الخبرة التقنية والرؤية الإبداعية.</p>
+                <p>نحن نؤمن بأن الموقع الإلكتروني هو واجهة عملك في العالم الرقمي، ولذلك نقدم حلولاً مصممة خصيصاً لتلبية احتياجات كل عميل، مع الحفاظ على المعايير العالمية في الأداء والأمان وسهولة الاستخدام.</p>
+                <p>ما يميزنا هو التزامنا بتقديم أعلى مستوى من الجودة، مع الحفاظ على الأسعار التنافسية التي تناسب جميع الميزانيات. فريقنا يعمل بجد لفهم احتياجاتك وتحويلها إلى واقع رقمي متميز.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الباقات -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">باقاتنا</h2>
+            <p class="section-subtitle">اختر الباقة التي تناسب احتياجاتك</p>
+            
+            <div class="pricing-grid">
+                <!-- الباقة الأساسية -->
+                <div class="pricing-card">
+                    <h3>الباقة الأساسية</h3>
+                    <div class="price">130 <span>درهم إماراتي</span></div>
+                    <ul class="pricing-features">
+                        <li>تصميم 7 صفحات </li>
+                        <li>إختيار الألوان بعناية</li>
+                        <li>ثيمات متعددة الالوان</li>
+                        <li>تصميم شعار اساسي</li>
+                        <li>دعم فني لمدة 7 أيام</li>
+                    </ul>
+                    <a href="https://wa.me/971568602206?text=مرحبًا أريد التواصل معكم بخصوص الباقة الاساسية لتصميم الويب"
+                    class="btn">
+                        تواصل معانا 💬</a>
+                </div>
+                
+                <!-- الباقة المتوسطة -->
+                <div class="pricing-card popular">
+                    <h3>الباقة المتوسطة</h3>
+                    <div class="price">183 <span>درهم إماراتي</span></div>
+                    <ul class="pricing-features">
+                        <li>تصميم 10 صفحات </li>
+                        <li>رسومات متحركة عالية الدقة</li>
+                        <li>قاعدة بيانات</li>
+                        <li>التطوير و التحديث لمدة 30 يوم</li>
+                        <li>دعم فني لمدة 30 يوم</li>
+                    </ul>
+                    <a href="https://wa.me/971568602206?text=مرحبًا أريد التواصل معكم بخصوص الباقة المتوسطة لتصميم الويب"
+                    class="btn">تواصل معانا 💬</a>
+                </div>
+                
+                <!-- الباقة المميزة -->
+                <div class="pricing-card">
+                    <h3>الباقة المميزة</h3>
+                    <div class="price">550 <span>درهم إماراتي</span></div>
+                    <ul class="pricing-features">
+                        <li>تصميم متكامل بدون حدود</li>
+                        <li>نظام إدارة محتوى متقدم</li>
+                        <li>قاعدة بيانات قوية</li>
+                        <li>تحسين SEO متكامل</li>
+                        <li>التطوير و التحديث لمدة عام كامل</li>
+                    </ul>
+                    <a href="https://wa.me/971568602206?text=مرحبًا أريد التواصل معكم بخصوص الباقة المميزة لتصميم الويب" 
+                    class="btn">تواصل معانا 💬</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Salamos Web. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+    // تبديل الثيمات
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                document.body.setAttribute('data-theme', theme);
+                localStorage.setItem('salamos-theme', theme);
+            });
+        });
+
+        // استعادة الثيم المحفوظ
+        const savedTheme = localStorage.getItem('salamos-theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Animation on scroll
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Show hero immediately
+        document.querySelector('.hero').style.opacity = 1;
+    });
+
+    // زر العودة للأعلى
+const backToTopButton = document.querySelector('.back-to-top');
+        
+window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+    } else {
+        backToTopButton.classList.remove('visible');
+    }
+});
+        
+backToTopButton.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+    </script>
+</body>
+</html>
